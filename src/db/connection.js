@@ -1,8 +1,10 @@
 const { Sequelize } = require('sequelize');
 
-// reemplazar valores por variables de entorno
-const db = new Sequelize('bsale_test', 'bsale_test', 'bsale_test', {
-  host: 'mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com',
+
+const { USER_DB, PASSWORD_DB, DB_NAME, HOSTDB } = process.env;
+
+const db = new Sequelize(DB_NAME, USER_DB, PASSWORD_DB, {
+  host: HOSTDB,
   dialect: 'mysql',
 });
 
