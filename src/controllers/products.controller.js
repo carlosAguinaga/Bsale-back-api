@@ -29,7 +29,7 @@ const getAllProducts = async (req, res) => {
 const getOneProduct = async (req, res) => {
   const id = req.params.id;
   const producto = await Product.findByPk(id);
-  res.status(200).json({ msg: producto });
+  res.status(200).json({ data: producto });
 };
 
 module.exports = {

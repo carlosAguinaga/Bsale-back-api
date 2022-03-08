@@ -1,7 +1,10 @@
 const express = require('express');
 const cors = require('cors')
-const { productsRouter } = require('./routers/products.router');
-const { categoriesRouter } = require('./routers/categories.router');
+const swaggerUI = require('swagger-ui-express');
+const swaggerJsDoc = require('swagger-jsdoc');
+const { swaggerOptions } = require('./swaggerOptions');
+const { productsRouter } = require('./routes/products.router');
+const { categoriesRouter } = require('./routes/categories.router');
 const { db } = require('./db/connection');
 
 
@@ -10,6 +13,7 @@ class Application {
   constructor(){
     this.app = express()
     this.port = process.env.PORT || 4000;
+    this.specs = swaggerJsDoc(swaggerOptions)
 
     this.paths = {
       products: "/api/v1/products",
@@ -21,6 +25,7 @@ class Application {
 
     // Middelwares
     this.middlewares();
+
 
     this.app.get('/api/v1', (req, res)=> {
       res.json({mesagge: "Bsale api Ecommerce"})
@@ -51,6 +56,7 @@ class Application {
   routes() {
     this.app.use(this.paths.products, productsRouter);
     this.app.use(this.paths.categories, categoriesRouter);
+    this.app.use('/api/v1/docs', swaggerUI.serve, swaggerUI.setup(this.specs));
   }
 
   listen() {
