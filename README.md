@@ -24,7 +24,7 @@ El comando instalará todas las dependencias requeridas.
 
 #### configurar las variables de entorno
 Crea un nuevo archivo llamado `.env`. 
-Copia todo el contenido de `.example.env` y pengaló dentro del archivo `.env`
+Copia todo el contenido de `.example.env` y péngalo dentro del archivo `.env`
 - Cambia `PORT` por el puerto en el que correra tu aplicacion, por defecto será el puerto 4000. 
 Change DB_URL to yours db url.
 
